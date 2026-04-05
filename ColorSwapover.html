@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>GAME OVER</title>
+   <style>
+
+      body{
+         background: linear-gradient( 90deg, rgba(50,50,50) ,rgba(150,150,150));
+      }
+
+      .howtoplay{
+         position: absolute;
+         right: 3vw;
+         top: 2vh;
+         font-family: cursive;
+         font-size: 30px;
+         color: #222222;
+         transition: all 0.3s;
+         border: none ;
+         background-color:lightgray;
+         border-radius: 20px;
+
+      }
+      .howtoplay:hover{
+         background-color:dimgray;
+         border-radius:15px;
+      }
+      .popbox{
+         height: 80vh;
+         width: 70vw;
+         background:linear-gradient(0deg, rgba(50,50,50) ,rgba(25,25,25));
+         z-index: -999;
+         position: fixed;
+         top:4vh;
+         left: 4vw;
+         border: 0.5vw solid black;
+         box-shadow:2px 2px 20px black;
+         opacity: 0;
+         transition: all 0.3s;
+         word-wrap: break-word;
+         display: flex;
+         flex-direction: column;
+         overflow-y:scroll ;
+         padding: 1vw;
+         scrollbar-width: none;
+      }
+
+      .x{
+         font-size: 30px;
+         border: none;
+         transition: all 0.2s;
+         left: 97%;
+         top: 3%;
+         position: sticky;
+         font-family: monospace;
+         z-index: 999;
+         color: white;
+         background-color:#222222;
+         transition: all 0.3s ease;
+         width: 30px;
+      }
+      .x:hover{
+         background-color:#444444;
+         border-radius:15px;
+      }
+      .write{
+         font-size: 26px;
+         position: relative;
+         max-width: 95%;
+         font-family: sans-serif;
+         position: relative;
+         color: whitesmoke;
+
+      }
+      .write1{
+         font-size: 40px;
+         position: relative;
+         font-family: sans-serif;
+         font-weight: 700;
+         color: whitesmoke;
+         background:linear-gradient(175deg, rgba(0,0,18) 40%,rgba(0,0,180));
+         border-radius:99px;
+         padding: 5px;
+         padding-left: 15px;
+         font-family: sans-serif;
+         transition: all 0.3s ease;
+         max-width: 90%;
+      }
+      .write1:hover{
+         background:linear-gradient(173deg, rgba(0,18,18) 40%,rgba(0,0,180));
+         padding: 6px;
+         padding-left: 100px;
+         max-width: 82.5%;
+      }
+      .gameoverbox{
+         height: 80vh;
+         width: 30vw;
+         background:linear-gradient(150deg, rgba(30,30,30) ,rgba(50,50,50));
+         position: absolute;
+         transform: translate(-50%,-50%);
+         top: 50%;
+         left: 50%;
+         border: 6px solid black;
+         border-radius: 10px;
+      }
+      .gameovertext{
+         color: white;
+         font-size: 30px;
+         position: absolute;
+         transform: translate(-50%,-50%);
+         top: 10%;
+         left: 50%;
+         text-shadow:2px 2px 5px rgba(0, 0, 0, 1.0);
+         border: 2px solid black;
+         background:linear-gradient(120deg, rgba(50,50,50) ,rgba(10,10,10));
+         box-shadow:0px 0px 7px lime;
+         padding: 10px;
+         transition: all 0.3s ease;
+         font-family: cursive;
+      }
+      .gameovertext:hover{
+         background:linear-gradient(180deg, rgba(40,40,40) ,rgba(20,20,20));
+         box-shadow:1px 1px 3px rgba(0, 200, 0, 1.0);
+      }
+
+      .tryagain{
+         color: red ;
+         font-size: 30px;
+         position: absolute;
+         transform: translate(-50%,-50%);
+         top: 65%;
+         left: 50%;
+         text-shadow:1px 1px 5px rgba(55, 55, 55, 0.5);
+         border: 2px solid black;
+         background:linear-gradient(90deg, rgba(50,50,50) ,rgba(10,10,10));
+         box-shadow:5px 5px 10px rgba(255, 255, 255, 0.6);
+         padding: 10px;
+         padding-left:20px ;
+         padding-right:20px;
+         transition: all 0.3s ease;
+         font-family: cursive;
+         border: 5px 5px 5px solid gray;
+
+      }
+
+   .tryagain:hover{
+         box-shadow:2px 2px 5px rgba(255, 255, 255, 1.0);
+         top: 65.6%;
+         left: 50.6%;
+         background:linear-gradient(0deg, rgba(40,40,40) ,rgba(20,20,20));
+         text-shadow:1px 1px 5px rgba(0, 0, 0, 1);       
+      }
+
+     .leaderboard{
+         color: lime ;
+         font-size: 30px;
+         position: absolute;
+         transform: translate(-50%,-50%);
+         top: 50%;
+         left: 50%;
+         text-shadow:1px 1px 5px rgba(55, 55, 55, 0.5);
+         border: 2px solid black;
+         background:linear-gradient(90deg, rgba(50,50,50) ,rgba(10,10,10));
+         box-shadow:0px 0px 100px rgba(255, 225, 255, 0.1);
+         padding: 10px;
+         padding-left:30px ;
+         padding-right:30px;
+         transition: all 0.3s ease;
+         font-family: cursive;
+         border: 5px 5px 5px solid gray;
+      }
+
+   .leaderboard:hover{
+         box-shadow:2px 2px 100px rgba(0, 0, 0, 0.2);
+         background:linear-gradient(0deg, rgba(40,40,40) ,rgba(20,20,20));
+         text-shadow:1px 1px 5px rgba(0, 0, 0, 1);       
+      }
+      .scoretext{
+         font-size: 30px;
+         font-family: cursive;
+         color: whitesmoke;
+         position: absolute;
+         top: 32%;
+         transform: translate(-50%,-50%);
+         left: 50%;
+         text-shadow:0px 0px 10px rgba(0, 0, 0, 1.0) ;
+         width:100%;
+         text-align:center;
+      }
+      .hscoretext{
+         font-size: 30px;
+         font-family: cursive;
+         color: yellow;
+         position: absolute;
+         top: 22%;
+         transform: translate(-50%,-50%);
+         text-shadow:0px 0px 10px rgba(0, 0, 0, 1.0);
+         left:50%;
+         width:100%;
+         text-align:center;
+      }
+      .leaderboardpop{
+         height: 85vh;
+         width: 28vw;
+         background:linear-gradient(150deg, rgba(30,30,30) ,rgba(50,50,50));
+         position: absolute;
+         transform: translate(-103%,-50%);
+         top: 50%;
+         left:1%;
+         border: 6px solid black;
+         border-radius: 10px;
+         z-index:999;
+      }
+      .clicklead{
+         height: 100px;
+         width: 28px;
+         position: absolute;
+         border: 6px solid black;
+         background-color: #222222;
+         left:100%;
+         top: 50%;
+         transform: translate(0%,-50%);
+         border-radius: 10px;
+      }
+
+      .whiteline{
+         height: 60px;
+         width: 4px;
+         position: absolute;
+         background-color: white;
+         left:50%;
+         top: 50%;
+         transform: translate(-50%,-50%);
+         border-radius: 20px;
+      }
+
+      @keyframes openlead {
+         from {transform: translate(-103%,-50%);}
+         to{transform: translate(0%,-50%);}
+      }
+      @keyframes closelead {
+         from {transform: translate(0%,-50%);}
+         to{transform: translate(-103%,-50%);}
+      }
+
+      .writelead{
+         color: lime ;
+         font-size: 30px;
+         position: absolute;
+         transform: translate(-50%,-50%);
+         top:  0%;
+         left: 50%;
+         text-shadow:1px 1px 5px rgba(55, 55, 55, 0.5);
+         font-family: cursive;
+      }
+
+      .leaddata{
+         position: relative;
+         left: 50%;
+         transform: translate(-50%,-50%);
+         color: white ;
+         font-size: 30px;
+         top: 10%;
+      }
+
+      .submitname{
+         transform: translate(-50%,-50%);
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         background-color: black;
+         width: 40vw;
+         height: 40vh;
+         z-index: 999;
+         border-radius: 10px;
+      }
+      .fullscreen{
+         transform: translate(-50%,-50%);
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         background-color: rgba(0, 0, 0, 0.6);
+         width: 100vw;
+         height:100vh;
+         z-index: 999;
+      }
+      .textsubmit{
+         font-size:28px;
+         transform: translate(-50%,-50%);
+         position: absolute;
+         left: 50%;
+         top: 20%;
+         color: lime;
+         width:650px;
+         font-family: cursive;
+         text-align: center;
+      }
+   .submitinput{
+         transform: translate(-50%,-50%);
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         height: 40px;
+         width: 250px;
+         border-radius:20px;
+         background-color: black;
+         font-size: 20px;
+         color: gray;
+         border: 2px solid gray;
+         padding-left: 10px;
+
+   }
+   .submitinput:placeholder{
+      color: white;
+      padding-left: 10px;
+   }
+   .subbut{
+         transform: translate(-50%,-50%);
+         position: absolute;
+         top: 90%;
+         left: 88%;
+         background-color: rgba(30, 30, 30, 1.0);
+         color: white;
+         width: 7.5vw;
+         height: 5vh;
+         box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+         transition: all 0.3s ease;
+         font-size: 18px;
+   }
+   .subbut:hover{
+         color: lime;
+         width: 7.8vw;
+         height: 5.3vh;
+         box-shadow: 0px 0px 20px rgba(200, 255, 200, 0.5);
+   }
+         .warnsubmit{
+         font-size:20px;
+         transform: translate(-50%,-50%);
+         position: absolute;
+         left: 50%;
+         top: 65%;
+         color: red;
+         width:650px;
+         font-family: monospace;
+         text-align: center;
+      }
+  
+  @media(max-width:600px){
+   
+   .gameoverbox{
+         height: 80vh;
+         width: 80vw;
+         
+      }
+   .leaderboardpop{
+         height: 85vh;
+         width: 70vw;
+         overflow-y:scroll;
+         overflow-x: hidden;
+         scrollbar-width: none;
+      }
+   .gameovertext{
+         font-size:25px;
+         font-family: "Poppins", Arial, sans-serif;
+          width:50%;
+      text-align:center;
+      }
+   .writelead{
+         font-family: "Poppins", Arial, sans-serif;;
+      }
+         .scoretext{
+         font-family: "Poppins", Arial, sans-serif;
+      }
+      .hscoretext{
+         font-family: "Poppins", Arial, sans-serif;
+         font-size:25px;;;
+      }
+   .popbox{
+         height: 90vh;
+         width: 90vw;
+      }
+
+      .x{
+         font-size: 30px;
+ opacity:0.3;
+      }
+      .x:hover{
+         background-color:#444444;
+         border-radius:15px;
+      }
+      .write{
+         font-size: 23px;
+         
+      }
+      .write1{
+         font-size: 25px;
+      }
+      .write1:hover{
+         background:linear-gradient(173deg, rgba(0,18,18) 40%,rgba(0,0,180));
+         padding-left: 20px;
+         max-width: 90%;
+      }
+      .submitname{
+         width: 90vw;
+         height: 40vh;
+         padding:4px;
+      }
+     .subbut{
+         left: 85%;
+         width: 20vw;
+         height: 5vh;
+   }
+     .subbut:hover{
+         color: lime;
+         width: 21vw;
+         height: 5.3vh;
+         box-shadow: 0px 0px 20px rgba(200, 255, 200, 0.5);
+   }
+     .textsubmit{
+         font-size:20px;
+         font-family: sans-serif;
+         width:90vw;
+      }
+     .warnsubmit{
+         font-size:10px;
+         top: 70%;
+      }
+  }
+    @keyframes popscore {
+     to{font-size: 17px;
+     opacity:0.6;
+     color: white;}
+}
+
+
+   </style>
+</head>
+<body>
+
+<div class="gameoverbox">
+   <p class="gameovertext">GAME OVER</p>
+   <p class="scoretext" id="score" >pasa</p>
+   <p class="hscoretext" id="hscore" >pasa</p>
+</div>
+<button class="howtoplay" onclick="xer()">>HOW TO PLAY?</button>
+
+<div class="leaderboardpop" id="leaderboardpop">
+   <p class="writelead">LEADERBOARD</p>
+   <p style="color:red;" id="1st" class="leaddata">1)</p>
+   <p style="color:orange;"  id="2nd" class="leaddata">2)</p>
+   <p style="color:yellow;" id="3rd" class="leaddata">3)</p>
+   <p id="4th" class="leaddata">4)</p>
+   <p id="5th" class="leaddata">5)</p>
+   <p id="6th" class="leaddata">6)</p>
+   <p id="7th" class="leaddata">7)</p>
+   <p id="8th" class="leaddata">8)</p>
+   <p id="9th" class="leaddata">9)</p>
+   <div class="clicklead" onclick="seelead()">
+      <div class="whiteline"></div>
+   </div>
+</div>
+
+<div class="popbox" id="popbox">
+   <button id="x" class="x" onclick="xe()">x</button>
+   <span class="write1">>The rules of this is simple.</span><br>
+   <p class="write">1)You just need to match the color of the ball and the bar! If the incoming ball is white, you need to change the color of bar to white and if the color of bar black you need to change the color of bar to black.<br><br>2)You can easily swap the color of the bar by pressing space or clicking anywhere on screen in Computer/Laptop and to change color of the bar in phone, you just need to tap any where in screen.<br><br>3)If white ball hit the bar when its color is black or black ball hit the bar when its color is white then game will be over.</p><br><br><br>
+   <span class="write1">>The scoring system of this game</span><br>
+   <p class="write">1)For the first 10 balls you will get 1 point for every ball, then for then next 10 balls you will get 2 points each.<br><br>2)The points for each ball will keep growing like this until you reach 100th ball, after the 100th ball you will get 10 points for each ball.<br><br>3)After you reach 10 points for each ball,the point will stay constant for each ball. Means it wont grow anymore!</p><br><br><br>
+   <span class="write1">>About this game</span><br>
+   <p class="write">The name of the game is color swap. It's a simple syntax and user-friendly game which everyone easily understands. Also you can make the graphics as you like from the settings. Even you can add some features from the settings (Like you can make the speed of ball show in game) and even you remove some features from the setting (Like you can make the score not show in game!)</p>
+</div>
+
+<button class="tryagain" onclick="GO()" >TRY AGAIN!</button>
+<button class="leaderboard" onclick="seelead()">LEADERBOARD</button>
+
+<script>
+let popbox=document.getElementById("popbox")
+let x=document.getElementById("x")
+let myname=null
+
+document.onkeyup=function (a) {
+   if (a.key==="Escape") {xe()}
+}
+
+
+   let s=document.getElementById("score")
+   let h=document.getElementById("hscore")
+   let sc=parseInt(localStorage.getItem("score"))
+   let hsc=parseInt(Number(localStorage.getItem("hscore")))
+   if (sc > hsc) {
+    hsc = sc;
+    localStorage.setItem("hscore", hsc);
+}
+   s.innerText="Your score is "+ sc
+   h.innerText="Your highest score is "+ hsc 
+
+
+   function GO() {
+      window.location.href="ColorSwap.html"
+   }
+    function xe() {
+      popbox.style.zIndex="-999"
+      popbox.style.opacity="0"
+    }
+    function xer() {
+      popbox.style.zIndex="999"
+      popbox.style.opacity="1"
+    }
+
+    let leadpop= document.getElementById("leaderboardpop")
+    leadopen=false
+
+    function seelead() {
+
+      if (!leadopen) {
+        leadpop.style.animation="openlead 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards"
+        leadopen=true
+      }
+      else{
+         leadpop.style.animation="closelead 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards"
+         leadopen=false
+      }
+      leadupdate()
+    }
+   
+    let fixname="JACOB"
+   
+    let position1 = document.getElementById("1st")
+    let position2 = document.getElementById("2nd")
+    let position3 = document.getElementById("3rd")
+    let position4 = document.getElementById("4th")
+    let position5 = document.getElementById("5th")
+    let position6 = document.getElementById("6th")
+    let position7 = document.getElementById("7th")
+    let position8 = document.getElementById("8th")
+    let position9 = document.getElementById("9th")
+
+    let p1=parseInt(Number(localStorage.getItem("1st")))
+    let p2=parseInt(Number(localStorage.getItem("2nd")))
+    let p3=parseInt(Number(localStorage.getItem("3rd")))
+    let p4=parseInt(Number(localStorage.getItem("4th")))
+    let p5=parseInt(Number(localStorage.getItem("5th")))
+    let p6=parseInt(Number(localStorage.getItem("6th")))
+    let p7=parseInt(Number(localStorage.getItem("7th")))
+    let p8=parseInt(Number(localStorage.getItem("8th")))
+    let p9=parseInt(Number(localStorage.getItem("9th")))
+   
+    let p1name=localStorage.getItem("1stname") || fixname
+    let p2name=localStorage.getItem("2ndname") || fixname
+    let p3name=localStorage.getItem("3rdname") || fixname
+    let p4name=localStorage.getItem("4thname") || fixname
+    let p5name=localStorage.getItem("5thname") || fixname
+    let p6name=localStorage.getItem("6thname") || fixname
+    let p7name=localStorage.getItem("7thname") || fixname
+    let p8name=localStorage.getItem("8thname") || fixname
+    let p9name=localStorage.getItem("9thname") || fixname
+
+    let up= parseInt(Number(localStorage.getItem("up")))
+
+    position1.innerText="1)"+p1+"-"+p1name
+    position2.innerText="2)"+p2+"-"+p2name
+    position3.innerText="3)"+p3+"-"+p3name
+    position4.innerText="4)"+p4+"-"+p4name
+    position5.innerText="5)"+p5+"-"+p5name
+    position6.innerText="6)"+p6+"-"+p6name
+    position7.innerText="7)"+p7+"-"+p7name
+    position8.innerText="8)"+p8+"-"+p8name
+    position9.innerText="9)"+p9+"-"+p9name
+
+    leadupdate()
+
+    
+
+    function leadupdate() {
+      if (myname===null && sc>p9) {showsubmit()
+                          return}
+      if (up===0) {
+         up=1
+         localStorage.setItem("up",up)
+      if (sc>p1) {
+         p9=p8
+         p8=p7
+         p7=p6
+         p6=p5
+         p5=p4
+         p4=p3
+         p3=p2
+         p2=p1
+         p1=sc
+
+         localStorage.setItem("1st",p1)
+         localStorage.setItem("2nd",p2)
+         localStorage.setItem("3rd",p3)
+         localStorage.setItem("4th",p4)
+         localStorage.setItem("5th",p5)
+         localStorage.setItem("6th",p6)
+         localStorage.setItem("7th",p7)
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+         p1=parseInt(Number(localStorage.getItem("1st")))
+         p2=parseInt(Number(localStorage.getItem("2nd")))
+         p3=parseInt(Number(localStorage.getItem("3rd")))
+         p4=parseInt(Number(localStorage.getItem("4th")))
+         p5=parseInt(Number(localStorage.getItem("5th")))
+         p6=parseInt(Number(localStorage.getItem("6th")))
+         p7=parseInt(Number(localStorage.getItem("7th")))
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+ 
+         localStorage.setItem("1stname",myname)
+         localStorage.setItem("2ndname",p1name)
+         localStorage.setItem("3rdname",p2name)
+         localStorage.setItem("4thname",p3name)
+         localStorage.setItem("5thname",p4name)
+         localStorage.setItem("6thname",p5name)
+         localStorage.setItem("7thname",p6name)
+         localStorage.setItem("8thname",p7name)
+         localStorage.setItem("9thname",p8name)
+
+
+         updateleadtext()
+
+      }
+      else if (sc>p2) {
+         p9=p8
+         p8=p7
+         p7=p6
+         p6=p5
+         p5=p4
+         p4=p3
+         p3=p2
+         p2=sc
+
+
+         localStorage.setItem("2nd",p2)
+         localStorage.setItem("3rd",p3)
+         localStorage.setItem("4th",p4)
+         localStorage.setItem("5th",p5)
+         localStorage.setItem("6th",p6)
+         localStorage.setItem("7th",p7)
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+
+         p2=parseInt(Number(localStorage.getItem("2nd")))
+         p3=parseInt(Number(localStorage.getItem("3rd")))
+         p4=parseInt(Number(localStorage.getItem("4th")))
+         p5=parseInt(Number(localStorage.getItem("5th")))
+         p6=parseInt(Number(localStorage.getItem("6th")))
+         p7=parseInt(Number(localStorage.getItem("7th")))
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+
+         localStorage.setItem("2ndname",myname)
+         localStorage.setItem("3rdname",p2name)
+         localStorage.setItem("4thname",p3name)
+         localStorage.setItem("5thname",p4name)
+         localStorage.setItem("6thname",p5name)
+         localStorage.setItem("7thname",p6name)
+         localStorage.setItem("8thname",p7name)
+         localStorage.setItem("9thname",p8name)
+
+         updateleadtext()
+      }
+      else if (sc>p3) {
+         p9=p8
+         p8=p7
+         p7=p6
+         p6=p5
+         p5=p4
+         p4=p3
+         p3=sc
+
+         localStorage.setItem("3rd",p3)
+         localStorage.setItem("4th",p4)
+         localStorage.setItem("5th",p5)
+         localStorage.setItem("6th",p6)
+         localStorage.setItem("7th",p7)
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+         p3=parseInt(Number(localStorage.getItem("3rd")))
+         p4=parseInt(Number(localStorage.getItem("4th")))
+         p5=parseInt(Number(localStorage.getItem("5th")))
+         p6=parseInt(Number(localStorage.getItem("6th")))
+         p7=parseInt(Number(localStorage.getItem("7th")))
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+         localStorage.setItem("3rdname",myname)
+         localStorage.setItem("4thname",p3name)
+         localStorage.setItem("5thname",p4name)
+         localStorage.setItem("6thname",p5name)
+         localStorage.setItem("7thname",p6name)
+         localStorage.setItem("8thname",p7name)
+         localStorage.setItem("9thname",p8name)
+
+         updateleadtext()
+
+      }
+
+            else if (sc>p4) {
+         p9=p8
+         p8=p7
+         p7=p6
+         p6=p5
+         p5=p4
+         p4=sc
+
+         localStorage.setItem("4th",p4)
+         localStorage.setItem("5th",p5)
+         localStorage.setItem("6th",p6)
+         localStorage.setItem("7th",p7)
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+         p4=parseInt(Number(localStorage.getItem("4th")))
+         p5=parseInt(Number(localStorage.getItem("5th")))
+         p6=parseInt(Number(localStorage.getItem("6th")))
+         p7=parseInt(Number(localStorage.getItem("7th")))
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+         localStorage.setItem("4thname",myname)
+         localStorage.setItem("5thname",p4name)
+         localStorage.setItem("6thname",p5name)
+         localStorage.setItem("7thname",p6name)
+         localStorage.setItem("8thname",p7name)
+         localStorage.setItem("9thname",p8name)
+
+
+         updateleadtext()
+
+      }
+            else if (sc>p5) {
+         p9=p8
+         p8=p7
+         p7=p6
+         p6=p5
+         p5=sc
+
+         localStorage.setItem("5th",p5)
+         localStorage.setItem("6th",p6)
+         localStorage.setItem("7th",p7)
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+         p5=parseInt(Number(localStorage.getItem("5th")))
+         p6=parseInt(Number(localStorage.getItem("6th")))
+         p7=parseInt(Number(localStorage.getItem("7th")))
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+         localStorage.setItem("5thname",myname)
+         localStorage.setItem("6thname",p5name)
+         localStorage.setItem("7thname",p6name)
+         localStorage.setItem("8thname",p7name)
+         localStorage.setItem("9thname",p8name)
+
+         updateleadtext()
+
+      }      
+     else if (sc>p6) {
+         p9=p8
+         p8=p7
+         p7=p6
+         p6=sc
+
+         localStorage.setItem("6th",p6)
+         localStorage.setItem("7th",p7)
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+         p6=parseInt(Number(localStorage.getItem("6th")))
+         p7=parseInt(Number(localStorage.getItem("7th")))
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+         localStorage.setItem("6thname",myname)
+         localStorage.setItem("7thname",p6name)
+         localStorage.setItem("8thname",p7name)
+         localStorage.setItem("9thname",p8name)
+
+         updateleadtext()
+
+
+      }    
+      else if (sc>p7) {
+         p9=p8
+         p8=p7
+         p7=sc
+
+         localStorage.setItem("7th",p7)
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+         p7=parseInt(Number(localStorage.getItem("7th")))
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+         localStorage.setItem("7thname",myname)
+         localStorage.setItem("8thname",p7name)
+         localStorage.setItem("9thname",p8name)
+
+         updateleadtext()
+
+      }    
+      else if (sc>p8) {
+         p9=p8
+         p8=sc
+
+         localStorage.setItem("8th",p8)
+         localStorage.setItem("9th",p9)
+
+         p8=parseInt(Number(localStorage.getItem("8th")))
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+         localStorage.setItem("8thname",myname)
+         localStorage.setItem("9thname",p8name)
+
+         updateleadtext()
+
+      }   
+      else if (sc>p9) {
+         p9=sc
+         localStorage.setItem("9th",p9)
+         p9=parseInt(Number(localStorage.getItem("9th")))
+
+         localStorage.setItem("9thname",myname)
+
+         updateleadtext()
+
+      }  
+
+
+     }
+     
+    }
+
+     function updateleadtext() {
+    p1name=localStorage.getItem("1stname") || fixname
+    p2name=localStorage.getItem("2ndname") || fixname
+    p3name=localStorage.getItem("3rdname") || fixname
+    p4name=localStorage.getItem("4thname") || fixname
+    p5name=localStorage.getItem("5thname") || fixname
+    p6name=localStorage.getItem("6thname") || fixname
+    p7name=localStorage.getItem("7thname") || fixname
+    p8name=localStorage.getItem("8thname") || fixname
+    p9name=localStorage.getItem("9thname") || fixname
+
+    position1.innerText="1)"+p1+"-"+p1name
+    position2.innerText="2)"+p2+"-"+p2name
+    position3.innerText="3)"+p3+"-"+p3name
+    position4.innerText="4)"+p4+"-"+p4name
+    position5.innerText="5)"+p5+"-"+p5name
+    position6.innerText="6)"+p6+"-"+p6name
+    position7.innerText="7)"+p7+"-"+p7name
+    position8.innerText="8)"+p8+"-"+p8name
+    position9.innerText="9)"+p9+"-"+p9name
+     }
+
+
+      function showsubmit() {
+         if (up===1) {return}
+
+      let fullscreen=document.createElement("div")
+      let subbox=document.createElement("div")
+      let textsubmit=document.createElement("span")
+      let warnsubmit=document.createElement("span")
+      let subinput=document.createElement("input")
+      let subbut=document.createElement("button")
+
+      fullscreen.className="fullscreen"
+      subbox.className="submitname"
+      textsubmit.className="textsubmit"
+      subinput.className="submitinput"
+      subbut.className="subbut"
+      warnsubmit.className="warnsubmit"
+
+      subbut.innerText="Submit"
+      textsubmit.innerText="CONGRATS! Now you are on the leaderboard! Type your NickName Here"
+      subbut.addEventListener("click",removesub)
+      document.onkeyup=function (a) {
+      if (a.key==="Enter") {removesub()}
+      }
+   
+      warnsubmit.innerText="NickName can't be less than 3 letters"
+
+
+      document.body.appendChild(fullscreen)
+      fullscreen.appendChild(subbox)
+      subbox.appendChild(textsubmit)
+      subbox.appendChild(subinput)
+      subbox.appendChild(subbut)
+      subbox.appendChild(warnsubmit)
+      
+      function removesub() {
+         let named=subinput.value
+         setTimeout(()=>{warnsubmit.style.animation="none"},410)
+         if (named.length>9) {warnsubmit.innerText="NickName must be less than 9 letters"
+                              warnsubmit.style.animation="popscore 0.2s linear alternate"
+                              warnsubmit.style.color="gold"
+                        }
+         else if (named.length<3) {warnsubmit.innerText="NickName can't be less than 3 letters"
+                                   warnsubmit.style.animation="popscore 0.2s linear alternate"
+                                   warnsubmit.style.color="red"
+                             }
+         else{
+            fullscreen.remove()
+            myname=named
+            leadupdate()
+            
+            }
+         
+      }
+    }
+
+
+
+
+
+</script>
+</body>
+</html>
