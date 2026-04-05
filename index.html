@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+  <style>
+    html, body {
+    height: 100%;
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: limegreen;
+}
+
+    .score{
+      font-weight:700;
+      font-size:30px;
+      color: black;
+      top: 0%;
+      left: 0%;
+      position: absolute;
+      font-family: cursive;
+      text-align: center;
+      width: 5vh;
+      opacity: 0;
+    }
+    .wball {
+      width: 10vh;
+      height: 10vh;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      transform: translate(-50%, -50%);
+      top: -10%;
+      left: 50%;
+      border: 1px solid black;
+    }
+
+.bball {
+    width: 10vh;
+    height: 10vh;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: -10%;
+        
+  }
+
+ .bar {
+  width: 25vw;
+  height: 10vh;
+  border-radius: 30px;
+  position: absolute;
+  bottom: 5%;
+  left: 37.5vw;
+  background-color: black;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  border: 2px solid #555;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.wbar {
+  width: 25vw;
+  height: 10vh;
+  border-radius: 30px;
+  position: absolute;
+  bottom: 5%;
+  left: 37.5vw;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  border: 2px solid #555;
+  transition: all 0.3s ease;
+  z-index: 10;
+  animation: none;
+}
+@keyframes pop {
+  from{scale: 1}
+  to{scale: 0.9}
+}
+@keyframes endpop {
+  from{scale: 1}
+  to{scale: 0.01}
+}
+
+
+
+.sbball{
+
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    opacity: 0.7;
+    z-index: 999;
+
+}
+.swball{
+
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    opacity: 0.7;
+    border: 1px solid balck;
+    z-index: 999;
+}
+.sballcreator{
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  background-color: black;
+  height: 0px;
+  width: 0px;
+  bottom: 17.5%;
+}
+.back{
+  height: 200vh;
+  width: 200vw;
+  background-color: none;
+  z-index: 99;
+}
+@media (max-width: 600px) {
+  .bar {
+    height: 9vh;  
+    width: 50vw;
+    bottom: 8%;
+    border-radius: 25px;
+    left: 25vw;
+  }
+  .wbar {
+    height: 9vh;  
+    width: 50vw;
+    bottom: 8%;
+    border-radius: 25px;
+    left: 25vw;
+  }
+  .bball{
+    height: 9vh;  
+    width: 9vh;
+  }
+  .wball{
+    height: 9vh;  
+    width: 9vh;
+  }
+
+}
+
+.mainback{
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      height: 100%;
+      width: 100%;
+      z-index: -10;
+}
+  .backbar{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 10vh;
+    width: 100vw;
+    background-color: #139c00;
+    
+  }
+    .longbar{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    height: 120vh;
+    width: 10vh;
+    background-color: #167700;
+    
+  }
+  @keyframes popscore {
+  from{scale: 1}
+  to{scale: 1.2;
+     opacity:0.6;}
+}
+
+
+  </style>
+</head>
+<body>
+
+ <div id="bar"></div>
+ <div id="sballcreator" class="sballcreator"></div>
+ <p id="score" class="score" >0</p>
+ <div class="back" onclick="barcolor()"></div>
+
+ <audio id="remove1" src="colorswapballremove.mp3"></audio>
+ <audio id="remove2" src="colorswapballremove.mp3"></audio>
+ <audio id="remove3" src="colorswapballremove.mp3"></audio>
+ <audio id="remove4" src="colorswapballremove.mp3"></audio>
+ <audio id="remove5" src="colorswapballremove.mp3"></audio>
+ <audio id="remove6" src="colorswapballremove.mp3"></audio>
+ <audio id="remove7" src="colorswapballremove.mp3"></audio>
+ <audio id="remove8" src="colorswapballremove.mp3"></audio>
+ <audio id="barchange1" src="colorswapbarchange.mp3"></audio>
+ <audio id="barchange2" src="colorswapbarchange.mp3"></audio>
+ <audio id="barchange3" src="colorswapbarchange.mp3"></audio>
+ <audio id="lose" src="colorswaplose.mp3"></audio>
+
+ 
+ <script src="ColorSwap.js"></script>
+
+
+
+</body>
+</html>
