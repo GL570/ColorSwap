@@ -94,8 +94,8 @@ function move(ball,startY=5) {
       sbball.style.top = "0px";
       sbball.style.transform = "translate(-50%, -50%)";
       sbball.className="sbball"
-      min=20
-      max=60
+      min=10
+      max=50
       let hi=Math.random()*(max-min)+min
       sbball.style.height = hi + "px"
       sbball.style.width  = hi + "px"
@@ -184,8 +184,8 @@ function move(ball,startY=5) {
       sbball.style.top = "0px";
       sbball.style.transform = "translate(-50%, -50%)";
       sbball.className="swball"
-      min=20
-      max=60
+      min=10
+      max=50
       let hi=Math.random()*(max-min)+min
       sbball.style.height = hi + "px"
       sbball.style.width  = hi + "px"
@@ -309,10 +309,10 @@ function backgroundcreate() {
    mainback.className="mainback"
    document.body.appendChild(mainback)
 
-   for (let i = 0; i < 10; i++) {
+   for (let i = 0; i < 13; i++) {
       let backbar =document.createElement("div")
       backbar.className="backbar"
-      backbar.style.top=10.01*i+"%"
+      backbar.style.top=8.34*i+"%"
       if (i%2==0) {backbar.style.backgroundColor="#16ba00"}
 
       mainback.appendChild(backbar)
