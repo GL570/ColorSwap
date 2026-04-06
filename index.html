@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-	<!-- Google tag (gtag.js) -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+		<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ZPJGJZRJM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,6 +14,7 @@
 
   gtag('config', 'G-8ZPJGJZRJM');
 </script>
+
 
   <style>
     html, body {
@@ -141,32 +143,6 @@
   background-color: none;
   z-index: 99;
 }
-@media (max-width: 600px) {
-  .bar {
-    height: 9vh;  
-    width: 50vw;
-    bottom: 8%;
-    border-radius: 25px;
-    left: 25vw;
-  }
-  .wbar {
-    height: 9vh;  
-    width: 50vw;
-    bottom: 8%;
-    border-radius: 25px;
-    left: 25vw;
-  }
-  .bball{
-    height: 9vh;  
-    width: 9vh;
-  }
-  .wball{
-    height: 9vh;  
-    width: 9vh;
-  }
-
-}
-
 .mainback{
       position: absolute;
       transform: translate(-50%, -50%);
@@ -180,7 +156,7 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    height: 10vh;
+    height: 8.34vh;
     width: 100vw;
     background-color: #139c00;
     
@@ -189,11 +165,41 @@
     position: absolute;
     top: 50%;
     transform: translate(0,-50%);
-    height: 120vh;
+    height: 130vh;
     width: 10vh;
     background-color: #167700;
     
   }
+@media (max-width: 600px) {
+  .bar {
+    height: 8vh;  
+    width: 60vw;
+    bottom: 10%;
+    border-radius: 25px;
+    left: 20vw;
+  }
+  .wbar {
+    height: 8vh;  
+    width: 60vw;
+    bottom: 10%;
+    border-radius: 25px;
+    left: 20vw;
+  }
+  .bball{
+    height: 8vh;  
+    width: 8vh;
+  }
+  .wball{
+    height: 8vh;  
+    width: 8vh;
+  }
+  .longbar{
+    width:12vw;
+  }
+
+}
+
+
   @keyframes popscore {
   from{scale: 1}
   to{scale: 1.2;
