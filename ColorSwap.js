@@ -1,6 +1,6 @@
 let score= 0;
 localStorage.setItem("score", score);
-let speed =9
+let speed =1.2
 let bar = document.getElementById("bar");
 let wbar=document.getElementById("wbar");
 let barcol = null;
@@ -62,14 +62,14 @@ function barcolor() {
    }
 
 }
-function move(ball,startY=5) {
+function move(ball,startY=-5) {
 
    let y=startY
 
 
     function bmove(){
    y+=speed
-   ball.style.top = y+'px'
+   ball.style.top = y+'vh'
    const blackcol = ball.getBoundingClientRect()
   
    
@@ -161,7 +161,7 @@ function move(ball,startY=5) {
                         speed=0
                         ball.style.animation="endpop 0.5s forwards"
                         bar.style.animation="endpop 0.5s forwards"
-                        setTimeout(()=>{gameover()},200)
+                        setTimeout(()=>{gameover()},2)
    }}
    else if (barcolors==wbar){
     if (ball.className=="wball"&& blackcol.bottom>=barcol.top) {
@@ -255,7 +255,7 @@ function move(ball,startY=5) {
                         speed=0
                         ball.style.animation="endpop 0.2s forwards"
                         bar.style.animation="endpop 0.2s forwards"
-                        setTimeout(()=>{gameover()},10)
+                        setTimeout(()=>{gameover()},2)
          }
    }
    
@@ -272,9 +272,9 @@ function gameover() {
 function interval() {
    
 
-  if (speed>5) {
+  if (speed>0.9) {
       let cho=Math.floor(Math.random()*2)
-      spown=14400/(2*speed)
+      spown=1800/(2*speed)
       clearInterval(yo)
       yo = setInterval(interval,spown)
 
@@ -313,7 +313,7 @@ if (window.innerWidth>window.innerHeight) {
    for (let i = 0; i < 11; i++) {
       let backbar =document.createElement("div")
       backbar.className="backbar"
-      backbar.style.top=10.01*i+"%"
+      backbar.style.top=10*i+"%"
       if (i%2==0) {backbar.style.backgroundColor="#16ba00"}
 
       mainback.appendChild(backbar)}
@@ -322,7 +322,7 @@ else{
       for (let i = 0; i < 13; i++) {
       let backbar =document.createElement("div")
       backbar.className="backbar"
-      backbar.style.top=8.34*i+"%"
+      backbar.style.top=8.4*i+"%"
       if (i%2==0) {backbar.style.backgroundColor="#16ba00"}
 
       mainback.appendChild(backbar)}
