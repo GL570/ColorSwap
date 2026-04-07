@@ -309,16 +309,28 @@ function backgroundcreate() {
    mainback.className="mainback"
    document.body.appendChild(mainback)
 
-   for (let i = 0; i < 13; i++) {
+if (window.innerWidth>window.innerHeight) {
+   for (let i = 0; i < 11; i++) {
       let backbar =document.createElement("div")
       backbar.className="backbar"
-      backbar.style.top=8.34*i+"%"
+      backbar.style.top=10*i+"%"
       if (i%2==0) {backbar.style.backgroundColor="#16ba00"}
 
-      mainback.appendChild(backbar)
+      mainback.appendChild(backbar)}
+}
+else{
+      for (let i = 0; i < 13; i++) {
+      let backbar =document.createElement("div")
+      backbar.className="backbar"
+      backbar.style.top=8.4*i+"%"
+      if (i%2==0) {backbar.style.backgroundColor="#16ba00"}
+
+      mainback.appendChild(backbar)}
+}
+   
 
 
-   }
+   
    for (let i = 0; i < 2; i++) {
       let longbar =document.createElement("div")
       longbar.className="longbar"
