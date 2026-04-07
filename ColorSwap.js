@@ -313,7 +313,7 @@ if (window.innerWidth>window.innerHeight) {
    for (let i = 0; i < 11; i++) {
       let backbar =document.createElement("div")
       backbar.className="backbar"
-      backbar.style.top=10*i+"%"
+      backbar.style.top=10.01*i+"%"
       if (i%2==0) {backbar.style.backgroundColor="#16ba00"}
 
       mainback.appendChild(backbar)}
@@ -322,7 +322,7 @@ else{
       for (let i = 0; i < 13; i++) {
       let backbar =document.createElement("div")
       backbar.className="backbar"
-      backbar.style.top=8.4*i+"%"
+      backbar.style.top=8.34*i+"%"
       if (i%2==0) {backbar.style.backgroundColor="#16ba00"}
 
       mainback.appendChild(backbar)}
