@@ -358,6 +358,27 @@
          font-family: monospace;
          text-align: center;
       }
+        .skipbut{
+         transform: translate(-50%,-50%);
+         position: absolute;
+         top: 89.5%;
+         left: 12%;
+         background-color: rgba(30, 30, 30, 1.0);
+         color: white;
+         padding: 8px;
+         padding-left: 35px;
+         padding-right: 35px;
+         box-shadow: -1px -1px 15px rgba(255, 255, 255, 0.5);
+         transition: all 0.3s ease;
+         font-size: 18px;
+   }
+      .skipbut:hover{
+         color: red;
+         padding: 10px;
+         padding-left: 38px;
+         padding-right: 38px;
+         box-shadow: -1.5px -1.5px 20px rgba(200, 255, 200, 0.5);
+   }
   
   @media(max-width:600px){
    
@@ -445,6 +466,12 @@
      opacity:0.6;
      color: white;}
 }
+   .invis{
+      height: 10px;
+      width: 10px;
+      opacity: 0;
+      position: absolute;
+   }
 
 
    </style>
@@ -482,6 +509,8 @@
    <p class="write">1)For the first 10 balls you will get 1 point for every ball, then for then next 10 balls you will get 2 points each.<br><br>2)The points for each ball will keep growing like this until you reach 100th ball, after the 100th ball you will get 10 points for each ball.<br><br>3)After you reach 10 points for each ball,the point will stay constant for each ball. Means it wont grow anymore!</p><br><br><br>
    <span class="write1">>About this game</span><br>
    <p class="write">The name of the game is color swap. It's a simple syntax and user-friendly game which everyone easily understands. Also you can make the graphics as you like from the settings. Even you can add some features from the settings (Like you can make the speed of ball show in game) and even you remove some features from the setting (Like you can make the score not show in game!)</p>
+   <div id="titorial" class="tryagain" style="top:200%; color: lime;" onclick="titorialreset()">Try Titorial Again</div>
+   <div class="invis" style="top:210%;"></div>
 </div>
 
 <button class="tryagain" onclick="GO()" >TRY AGAIN!</button>
@@ -494,6 +523,14 @@ let myname=null
 
 document.onkeyup=function (a) {
    if (a.key==="Escape") {xe()}
+}
+
+function titorialreset() {
+   let titorialresetbut=document.getElementById("titorial")
+   titorialresetbut.innerText="Done!"
+   titorialresetbut.style.color="white"
+
+   localStorage.setItem("userlevel",0)
 }
 
 
@@ -510,7 +547,7 @@ document.onkeyup=function (a) {
 
 
    function GO() {
-      window.location.href="index.html"
+      window.location.href="ColorSwap.html"
    }
     function xe() {
       popbox.style.zIndex="-999"
@@ -537,7 +574,7 @@ document.onkeyup=function (a) {
       leadupdate()
     }
    
-    let fixname="Empty"
+    let fixname=" ----- Empty"
    
     let position1 = document.getElementById("1st")
     let position2 = document.getElementById("2nd")
@@ -571,15 +608,15 @@ document.onkeyup=function (a) {
 
     let up= parseInt(Number(localStorage.getItem("up")))
 
-    position1.innerText="1)"+p1+"-"+p1name
-    position2.innerText="2)"+p2+"-"+p2name
-    position3.innerText="3)"+p3+"-"+p3name
-    position4.innerText="4)"+p4+"-"+p4name
-    position5.innerText="5)"+p5+"-"+p5name
-    position6.innerText="6)"+p6+"-"+p6name
-    position7.innerText="7)"+p7+"-"+p7name
-    position8.innerText="8)"+p8+"-"+p8name
-    position9.innerText="9)"+p9+"-"+p9name
+    position1.innerText="1) "+p1+p1name
+    position2.innerText="2) "+p2+p2name
+    position3.innerText="3) "+p3+p3name
+    position4.innerText="4) "+p4+p4name
+    position5.innerText="5) "+p5+p5name
+    position6.innerText="6) "+p6+p6name
+    position7.innerText="7) "+p7+p7name
+    position8.innerText="8) "+p8+p8name
+    position9.innerText="9) "+p9+p9name
 
     leadupdate()
 
@@ -864,15 +901,15 @@ document.onkeyup=function (a) {
     p8name=localStorage.getItem("8thname") || fixname
     p9name=localStorage.getItem("9thname") || fixname
 
-    position1.innerText="1)"+p1+"-"+p1name
-    position2.innerText="2)"+p2+"-"+p2name
-    position3.innerText="3)"+p3+"-"+p3name
-    position4.innerText="4)"+p4+"-"+p4name
-    position5.innerText="5)"+p5+"-"+p5name
-    position6.innerText="6)"+p6+"-"+p6name
-    position7.innerText="7)"+p7+"-"+p7name
-    position8.innerText="8)"+p8+"-"+p8name
-    position9.innerText="9)"+p9+"-"+p9name
+    position1.innerText="1) "+p1+p1name
+    position2.innerText="2) "+p2+p2name
+    position3.innerText="3) "+p3+p3name
+    position4.innerText="4) "+p4+p4name
+    position5.innerText="5) "+p5+p5name
+    position6.innerText="6) "+p6+p6name
+    position7.innerText="7) "+p7+p7name
+    position8.innerText="8) "+p8+p8name
+    position9.innerText="9) "+p9+p9name
      }
 
 
@@ -885,6 +922,7 @@ document.onkeyup=function (a) {
       let warnsubmit=document.createElement("span")
       let subinput=document.createElement("input")
       let subbut=document.createElement("button")
+      let skipbut=document.createElement("button")
 
       fullscreen.className="fullscreen"
       subbox.className="submitname"
@@ -892,10 +930,13 @@ document.onkeyup=function (a) {
       subinput.className="submitinput"
       subbut.className="subbut"
       warnsubmit.className="warnsubmit"
+      skipbut.className="skipbut"
 
       subbut.innerText="Submit"
+      skipbut.innerText="Skip"
       textsubmit.innerText="CONGRATS! Now you are on the leaderboard! Type your NickName Here"
       subbut.addEventListener("click",removesub)
+      skipbut.addEventListener("click",skipsub)
       document.onkeyup=function (a) {
       if (a.key==="Enter") {removesub()}
       }
@@ -909,29 +950,72 @@ document.onkeyup=function (a) {
       subbox.appendChild(subinput)
       subbox.appendChild(subbut)
       subbox.appendChild(warnsubmit)
+      subbox.appendChild(skipbut)
       
       function removesub() {
          let named=subinput.value
+         let finalname=named.replace(/[0-9+\-*/.():@#$%`=^" "]/g, "")
          setTimeout(()=>{warnsubmit.style.animation="none"},410)
-         if (named.length>9) {warnsubmit.innerText="NickName must be less than 9 letters"
+         if (finalname.length>12) {warnsubmit.innerText="NickName must be less or equal to 12 letters"
                               warnsubmit.style.animation="popscore 0.2s linear alternate"
-                              warnsubmit.style.color="gold"
+                              warnsubmit.style.color="red"
                         }
-         else if (named.length<3) {warnsubmit.innerText="NickName can't be less than 3 letters"
+         else if (finalname.length<3) {warnsubmit.innerText="NickName can't be less than 3 letters"
                                    warnsubmit.style.animation="popscore 0.2s linear alternate"
-                                   warnsubmit.style.color="red"
+                                   warnsubmit.style.color="gold"
                              }
          else{
             fullscreen.remove()
-            myname=named
+            if      (sc>9999){myname=" - "+finalname}
+            else if (sc>999){myname=" -- "+finalname}
+            else if (sc>99){myname=" --- "+finalname}
+            else if (sc>9){myname=" ---- "+finalname}
+           else if (sc>0){myname=" ----- "+finalname}
             leadupdate()
             
             }
          
       }
+
+      function skipsub() {
+            fullscreen.remove()
+            if      (sc>9999){myname=" - Name_Skipped"}
+            else if (sc>999){myname=" -- Name_Skipped"}
+            else if (sc>99){myname=" --- Name_Skipped"}
+            else if (sc>9){myname=" ---- Name_Skipped"}
+           else if (sc>0){myname=" ----- Name_Skipped"}
+            leadupdate()
+      }
+
+
+
     }
 
+//warning!! Reset leaderboard!
 
+    function Resetleaderboard() {
+
+         localStorage.setItem("1stname"," ----- Empty")
+         localStorage.setItem("2ndname"," ----- Empty")
+         localStorage.setItem("3rdname"," ----- Empty")
+         localStorage.setItem("4thname"," ----- Empty")
+         localStorage.setItem("5thname"," ----- Empty")
+         localStorage.setItem("6thname"," ----- Empty")
+         localStorage.setItem("7thname"," ----- Empty")
+         localStorage.setItem("8thname"," ----- Empty")
+         localStorage.setItem("9thname"," ----- Empty")
+
+
+         localStorage.setItem("1st",0)
+         localStorage.setItem("2nd",0)
+         localStorage.setItem("3rd",0)
+         localStorage.setItem("4th",0)
+         localStorage.setItem("5th",0)
+         localStorage.setItem("6th",0)
+         localStorage.setItem("7th",0)
+         localStorage.setItem("8th",0)
+         localStorage.setItem("9th",0)
+    }
 
 
 
